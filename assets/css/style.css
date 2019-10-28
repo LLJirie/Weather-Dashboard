@@ -1,0 +1,56 @@
+header {
+    text-align: center;
+    color: white;
+    background: black;
+    border-radius: 0;
+    height: 60px;
+    font-size: 40px;
+    top: 10px;
+
+    
+  }
+  .row .col { 
+    height: 100px; 
+    background: rgb(173, 216, 230); 
+} 
+#main {
+  background-color: lightgray;
+
+}
+  
+form.example input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  float: left;
+  width: 80%;
+  background: lightgray;
+}
+
+form.example button {
+  float: left;
+  width: 20%;
+  padding: 10px;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+#cityWeather {
+  background: lightgray;
+  height: 300px;
+  border: solid;
+
+
+}
+
+
+
+@media screen and (max-width: 760px) {
+  @media screen and (max-width: 480px)
