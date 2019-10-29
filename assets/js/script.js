@@ -5,32 +5,43 @@ var day = moment();
 // $("#moment").text(day);
 $("#moment").text(moment().format("(MMM/D/YYYY)"));
 
-       var APIkey="f9d06868bafd4c49eafce461023e2479";
-       var cityInput = {"Austin" "Chicago" "New York" "Orlando" "San Francisco" "Seattle" "Denver" "Atlanta"}
+// var APIkey="f9d06868bafd4c49eafce461023e2479";
 
-      var queryURL = "https://api.openweathermap.org/data/2.5/weather?q={city}&units=imperial&appid=  + f9d06868bafd4c49eafce461023e2479";
+var cityInput = ["Austin", "Chicago", "New York", "Orlando", "San Francisco", "Seattle", "Denver", "Atlanta"];
+//      console.log=(cityInput.length);
 
 
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function (response) {
-                
-          console.log(response);
-          console.log(queryURL)
-          $(".city").html(response.name);
-          
-          $(".temperature").text(response.main.temp);
-          $(".humidity").text(response.main.humidity);
-          $(".wind-speed").text(response.main.temp);
-          $(".uvIndex").text(response.wind.speed);
-        })     
+
+function getWeatherData(city) {
+  var baseURL = "https://api.openweathermap.org/data/2.5/weather?units=imperial&appid=f9d06868bafd4c49eafce461023e2479&q=" + city;
+
+
+  $.ajax({
+    url: baseURL,
+    method: "GET"
+  }).then(function (response) {
+
+    console.log(response);
+    $(".city").html("City: " + response.name);
+
+    $(".temperature").text("Temperature" + response.main.temp);
+    $(".humidity").text("Humidity: " + response.main.humidity);
+    $(".wind-speed").text("Wind Speed: " + response.main.temp);
+    $(".uvIndex").text("UV Index: " + response.wind.speed);
+  })
+}
+
+getWeatherData(cityInput[ cityInput.length - 1 ]);
+
+$(document).on("click", ".city-btn", function(){
+  getWeatherData($(this).text());
+});
 
     // var =f9d06868bafd4c49eafce461023e2479
 
     // api.openweathermap.org/data/2.5/forecast?q={city name},{US}
 
-  
+
 
     // var userInputCity = 
     // for (i = 0; i<cityChoices.length; i++)
