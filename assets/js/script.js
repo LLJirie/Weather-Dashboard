@@ -8,9 +8,11 @@ $("#moment").text(moment().format("(MMM/D/YYYY)"));
 // var APIkey="f9d06868bafd4c49eafce461023e2479";
 
 var cityInput = ["Austin", "Chicago", "New York", "Orlando", "San Francisco", "Seattle", "Denver", "Atlanta"];
-//      console.log=(cityInput.length);
+
 function getFiveDayWeatherData(city) {
+  console.log("Im here " + city)
   var fiveDay = "https://api.openweathermap.org/data/2.5/forecast?units=imperial&appid=f9d06868bafd4c49eafce461023e2479&q=" + city;
+
 
   $.ajax({
     url: fiveDay,
@@ -23,8 +25,9 @@ function getFiveDayWeatherData(city) {
       var element = weather[i];
       if (element.dt_txt.includes("18:00:00")) {
         console.log("#weather-" + count, element);
-
+        $("#weather-" + count).text("");
         $("#weather-" + count).append(
+
           $("<p>").text(element.dt_txt),
           $("<p>").text("Temp: " + element.main.temp),
           $("<p>").text("Humidity: " + element.main.humidity),
@@ -36,16 +39,8 @@ function getFiveDayWeatherData(city) {
       }
     }
   })
-  // bbb
+  
 }
-
-// var imgURL = response.Poster;
-
-// // Creating an element to hold the image
-// var image = $("<img>").attr("src", imgURL);
-
-// // Appending the image
-// movieDiv.append(image);
 
 
 function getWeatherData(city) {
@@ -59,8 +54,8 @@ function getWeatherData(city) {
 
     // console.log(response);
     $(".city").html("City: " + response.name);
-    // $(".icon").attr(response.weather.icon)
-    console.log(response.weather.icon);
+    
+    // console.log(response.weather.icon);
     $(".temperature").text("Temperature:" + response.main.temp);
     $(".humidity").text("Humidity: " + response.main.humidity);
     $(".wind-speed").text("Wind Speed: " + response.main.temp);
@@ -68,16 +63,18 @@ function getWeatherData(city) {
   })
 }
 
-getWeatherData(cityInput[cityInput.length - 1]);
+getWeatherData(cityInput[cityInput.length - 1])
 
 $(document).on("click", ".city-btn", function () {
-  getWeatherData($(this).text());
+  getWeatherData($(this).text()); 
+  getFiveDayWeatherData($(this).text()); 
 });
 
 getFiveDayWeatherData(cityInput[cityInput.length - 1])
 
-
-
+// $(document).on("click","city-btn"), function () {
+//   getFiveDayWeatherData($(this)).text();
+// }
 
         // var iconcode = a.weather[0].icon;
 
