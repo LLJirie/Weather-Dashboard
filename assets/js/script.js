@@ -28,7 +28,7 @@ function getFiveDayWeatherData(city) {
         $("#weather-" + count).text("");
         $("#weather-" + count).append(
 
-          $("<p>").text(element.dt_txt),
+          $("<p>").text(element.dt_txt.split(" ")[0]),
           $("<p>").text("Temp: " + element.main.temp),
           $("<p>").text("Humidity: " + element.main.humidity),
           
