@@ -20,9 +20,11 @@ function getFiveDayWeatherData(city) {
   }).then(function (response) {
     var weather = response.list
     var count = 0;
+   
     for (var i = 0; i < weather.length; i++) {
       
       var element = weather[i];
+      var icon = element.weather[0].icon
       if (element.dt_txt.includes("18:00:00")) {
         console.log("#weather-" + count, element);
         $("#weather-" + count).text("");
@@ -31,6 +33,8 @@ function getFiveDayWeatherData(city) {
           $("<p>").text(element.dt_txt.split(" ")[0]),
           $("<p>").text("Temp: " + element.main.temp),
           $("<p>").text("Humidity: " + element.main.humidity),
+          $("<img>").attr("src", "http://openweathermap.org/img/w/" + icon + ".png"),
+
           
         );
         count++;
